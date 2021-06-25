@@ -62,7 +62,7 @@
 #include "key.h"
 #include "locality.h"
 #include "logging.h"
-#include "swtpm_nvfile.h"
+#include "swtpm_nvstore.h"
 #include "pidfile.h"
 #include "tpmstate.h"
 #include "ctrlchannel.h"
@@ -665,7 +665,7 @@ handle_tpmstate_options(char *options)
     if (parse_tpmstate_options(options, &tpmstatedir, &mode) < 0)
         return -1;
 
-    if (tpmstate_set_dir(tpmstatedir) < 0 ||
+    if (tpmstate_set_backend_uri(tpmstatedir) < 0 ||
         tpmstate_set_mode(mode) < 0)
         ret = -1;
 
